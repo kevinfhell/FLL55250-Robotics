@@ -7,8 +7,13 @@
 
 #### First thing first -->Python
 
+5 minutes video
+
+```https://www.youtube.com/watch?v=q8yyjhxSPdI&ab_channel=SemicolonDotDev```
+
 
 ```https://www.python.org/downloads/```
+
 
 Install the python with the guide
 
@@ -20,39 +25,86 @@ Install the python with the guide
 
 vscode
 
+configure vscode to get python programming and running environemnt. 
+
+
 ```https://code.visualstudio.com/```
+
 
 install python run plugin
 
+
+
 #### github
+
+install git bash and clone our repo
+
+
+```https://phoenixnap.com/kb/how-to-install-git-windows```
+
+```git clone https://github.com/kevinfhell/FLL55250-Robotics.git```
+
 
 #### what's project and work with a team
 
+- use git to work as a team
+
 ### First Line of code "hello world"
 
+
+```print("hello world, This is my first line of python code")```
+
+
 ### Grammar
+	- keyword
+	- line and identation
+	- quotes
+	- comment
 
 ### variable 
+	- int
+	- str
+	- list
+	- others?
 
 ### operator
+	- `+/-/*//`
 
 ### input/output
+	- input()
+	- print()
 
 ### Condition
+	- if...else...
+	- case...
 
 ### loop
+	- for
+	- while
 
 ### function
+	- def a new function
+	- input and output
+	- call a function
 
 ### modules
+	- define a module
+	- import module
+	- call function in module
 
 ### Project practice
+	- Project kickoff
+	- Project Life cycle
+		- Design
+		- Coding
+		- Testing
+		- Delivery
 
 
 ## Programming with Prime Spike
-
-
-### Review what we have
+	- where we are, code reuse from Cargo connect project
+	- create a module and FLL55250 team develop and maintain it 
 
 
 ### Practice on different use cases
+
