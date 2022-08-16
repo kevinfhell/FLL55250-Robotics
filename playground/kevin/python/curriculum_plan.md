@@ -107,4 +107,16 @@ install git bash and clone our repo
 
 
 ### Practice on different use cases
+	- localization
+		- Use wall or buidlings on the map.
+		- Use distance sencor for localization. 
+		- Use color sensor for localization. 
+	- navigation
+		- Use color sensor for navigation -- Line follow
+		- Use gyro sensor for navigation -- gyro straight
+		- Use motor for navigation -- Turn and move with degrees and distance 
+		- Use localization for navigation. 
+	- Motor control
+		- Gear design and tune the movement. 
+		- Motor control with different attachment.
 
