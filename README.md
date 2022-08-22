@@ -4,8 +4,8 @@ Home repo for FLL55250 Robotics team.
 # Starts in the team
 |name|starts|
 |----|------|
-|Dai Derek|\*|
-|Dai Lara|\*|
+|Teng Derek|\*|
+|Teng Lara|\*|
 |Gao Yifei|\*|
 |Jiang Aiden|\*|
 |Wang Claire|\*|
