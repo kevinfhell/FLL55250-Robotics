@@ -2,6 +2,11 @@
 Home repo for FLL55250 Robotics team. 
 
 # Starts in the team
+|Dai Derek|o|
+|Dai Lara|o|
+|Gao Yifei|o|
+|Jiang Aiden|o|
+|Wang Claire|o|
 
 
 ## Function repo
