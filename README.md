@@ -15,6 +15,16 @@ Home repo for FLL55250 Robotics team.
 
 
 ## Project plan
+Black team:
+Derek, Claire
+Mission 8, Mission11,12.
+
+
+Red team:
+Ivy, Aiden, Lara. 
+Mission 2
+
+
 
 
 ## Playground
