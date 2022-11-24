@@ -155,35 +155,38 @@ def pid_line_follow(kp,ki,kd,distance):
 #Variable definition
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 switch_flag = 0 # use as a local variable to switch between round1 and round3
-fast_speed = 70 # maximum speed
+fast_speed = 90 # maximum speed
 normal_speed = 50 # normal speed for routine.
 slow_speed = 35 #slow speed to control the accuracy
 middle_reflection = 80 # used for the line follower or accurate positioning.
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 hub.motion_sensor.reset_yaw_angle()
-gyro_straight_forward_print(0,55,normal_speed)
+gyro_straight_forward_print(0,68,normal_speed)
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(0,18,normal_speed)
+gyro_straight_forward_print(0,12,normal_speed)
 left_turn_motor(180,50)
 mm_motor = MotorPair("B","A")
-gyro_straight_forward_print(-45,67,normal_speed)
+gyro_straight_forward_print(-45,64,normal_speed)
 pid_turn(45,1,40)
 #right_turn_motor(270,50)
-gyro_straight_forward_print(45,33,normal_speed)
+gyro_straight_forward_print(45,80,fast_speed)
 cnt = 0
-while (cnt < 4):
+while (cnt < 3):
     cnt = cnt + 1
     mm_motor = MotorPair("A","B")
-    gyro_straight_forward_print(45,18,normal_speed)
+    gyro_straight_forward_print(45,10,normal_speed)
     mm_motor = MotorPair("B","A")
-    gyro_straight_forward_print(45,35,fast_speed)
+    gyro_straight_forward_print(45,80,fast_speed)
  
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(45,35,normal_speed)
-
+gyro_straight_forward_print(46,34,normal_speed)##
 mm_motor = MotorPair("B","A")
-gyro_straight_forward_print(45,10,normal_speed)
-pid_turn(-45,1,40)
-gyro_straight_forward_print(-45,10,normal_speed)
+#gyro_straight_forward_print(45,2,normal_speed)
+pid_turn(-58,1,40)
+gyro_straight_forward_print(-58,69,normal_speed)
+right_turn_motor(50,50)
+#gyro_straight_forward_print(-110,20,normal_speed)
+r_arm_motor.run_for_degrees(-480,normal_speed)
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(-45,100,normal_speed)
+gyro_straight_forward_print(-39,150,normal_speed)
+#r_arm_motor.run_for_degrees(-300,normal_speed)
