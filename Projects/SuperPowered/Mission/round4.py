@@ -1,4 +1,4 @@
-#Import
+gyro_straight_forward_print(55,125,fast_speed)gyro_straight_forward_print(55,125,fast_speed)#Import
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
 from spike.control import wait_for_seconds, wait_until, Timer
@@ -162,23 +162,7 @@ middle_reflection = 80 # used for the line follower or accurate positioning.
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 hub.motion_sensor.reset_yaw_angle()
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(7,110,normal_speed)
-pid_turn(-1,1,40)
+gyro_straight_forward_print(8,95,fast_speed)
+gyro_straight_forward_print(0,18,normal_speed)#towards target
 mm_motor = MotorPair("B","A")
-gyro_straight_forward_print(0,12,normal_speed)
-left_turn_motor(180,50)
-#mm_motor = MotorPair("B","A")
-#gyro_straight_forward_print(-45,64,normal_speed)
-pid_turn(70,1,40)
-#right_turn_motor(270,50)
-#gyro_straight_forward_print(45,80,fast_speed)
-gyro_straight_forward_cs(70,20,slow_speed)
-pid_turn(90,1,40)
-cnt = 0
-while (cnt < 3):
-    cnt = cnt + 1
-    mm_motor = MotorPair("A","B")
-    gyro_straight_forward_print(90,10,normal_speed)
-    mm_motor = MotorPair("B","A")
-    gyro_straight_forward_print(90,80,fast_speed)
- 
+gyro_straight_forward_print(7,114,fast_speed)

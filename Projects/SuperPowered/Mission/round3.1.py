@@ -120,19 +120,20 @@ def gyro_straight_backward(target_yawn, distance, power):
         rmm_motor.start_tank_at_power((power + correction), (power - correction))
     rmm_motor.stop()
 
+
 def pid_turn(target_angle, p_constant, min_power):
-    hub.motion_sensor.reset_yaw_angle()
+#    hub.motion_sensor.reset_yaw_angle()
     mm_motor.set_stop_action('hold')
     error = target_angle - hub.motion_sensor.get_yaw_angle()
-    max_power = 100
-    while(error != 0):
+    max_power = 80
+    while(error > 3):
         error = target_angle - hub.motion_sensor.get_yaw_angle()
         control_output = error - p_constant
         if(abs(control_output) > max_power):
-            control_output = max_power * target_angle / abs(target_angle)
+            control_output = int(max_power * target_angle / abs(target_angle))
         if(abs(control_output) < min_power):
-            control_output = min_power * target_angle / abs(target_angle)
-        mm_motor.start_at_power(control_output, -control_output)
+            control_output = int(min_power * target_angle / abs(target_angle))
+        mm_motor.start_tank_at_power(control_output, -control_output)
     mm_motor.stop()
 
 def pid_line_follow(kp,ki,kd,distance):
@@ -154,16 +155,30 @@ def pid_line_follow(kp,ki,kd,distance):
 #Variable definition
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 switch_flag = 0 # use as a local variable to switch between round1 and round3
-fast_speed = 70 # maximum speed
+fast_speed = 90 # maximum speed
 normal_speed = 50 # normal speed for routine.
 slow_speed = 35 #slow speed to control the accuracy
 middle_reflection = 80 # used for the line follower or accurate positioning.
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 hub.motion_sensor.reset_yaw_angle()
-gyro_straight_forward_print(-2,86,normal_speed)
-#left_turn_motor(10,10)
-arm_up(l_arm_motor,-150, 30)
-gyro_straight_forward_print(0,20,fast_speed)
+
+gyro_straight_forward_print(0,15,normal_speed)
+pid_turn(-46,1,40)
+gyro_straight_forward_print(-46,140,normal_speed)
+#left_turn_motor(180,50)
+right_turn_motor(45,50)
+
+r_arm_motor.run_for_degrees(-480,slow_speed)
+
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(0,102,normal_speed)
-arm_up(l_arm_motor,150, 60)
+gyro_straight_forward_print(-45,15,fast_speed)
+#mm_motor.move(50,"cm",0)
+#hub.motion_sensor.reset_yaw_angle()
+
+left_turn_motor(250,50)
+#left_turn_motor(30,50)
+
+#pid_turn(-135,1,40)
+mm_motor = MotorPair("B","A")
+gyro_straight_forward_print(-119,40,fast_speed)
+gyro_straight_forward_print(-120,130,fast_speed)

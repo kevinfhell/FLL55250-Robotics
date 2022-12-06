@@ -14,7 +14,7 @@ right_motor = Motor("A")
 left_motor = Motor("B")
 r_arm_motor = Motor("C")
 col_sensor = ColorSensor("D")
-col_sensor = ColorSensor("F")
+col_sensor_r = ColorSensor("F")
 l_arm_motor = Motor("E")
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -91,11 +91,12 @@ def move_arm_down_turbo():
 def gyro_straight_forward_cs(target_yawn, distance, power):
     right_motor.set_degrees_counted(0)
     while(abs(right_motor.get_degrees_counted()) <= (distance / 17.5 * 360)):
-        if(col_sensor.get_reflected_light() < 40):
+        if(col_sensor_r.get_reflected_light() < 40):
             mm_motor.stop()
             break
         correction = target_yawn - hub.motion_sensor.get_yaw_angle()
         mm_motor.start_tank_at_power((power + correction), (power - correction))
+        print("yaw",hub.motion_sensor.get_yaw_angle())
     mm_motor.stop()
 
 def gyro_straight_forward(target_yawn, distance, power):
@@ -107,7 +108,9 @@ def gyro_straight_forward(target_yawn, distance, power):
 
 def gyro_straight_forward_print(target_yawn, distance, power):
     right_motor.set_degrees_counted(0)
-    while(abs(right_motor.get_degrees_counted()) <= (distance / 17.5 * 360)):
+    i = 0
+    while((abs(right_motor.get_degrees_counted()) <= (distance / 17.5 * 360)) & (i < 300)):
+        i = i + 1
         correction = target_yawn - hub.motion_sensor.get_yaw_angle()
         print("yaw",hub.motion_sensor.get_yaw_angle())
         mm_motor.start_tank_at_power((power + correction), (power - correction))
@@ -120,19 +123,20 @@ def gyro_straight_backward(target_yawn, distance, power):
         rmm_motor.start_tank_at_power((power + correction), (power - correction))
     rmm_motor.stop()
 
+
 def pid_turn(target_angle, p_constant, min_power):
-    hub.motion_sensor.reset_yaw_angle()
+#    hub.motion_sensor.reset_yaw_angle()
     mm_motor.set_stop_action('hold')
     error = target_angle - hub.motion_sensor.get_yaw_angle()
-    max_power = 100
-    while(error != 0):
+    max_power = 80
+    while(error > 3):
         error = target_angle - hub.motion_sensor.get_yaw_angle()
         control_output = error - p_constant
         if(abs(control_output) > max_power):
-            control_output = max_power * target_angle / abs(target_angle)
+            control_output = int(max_power * target_angle / abs(target_angle))
         if(abs(control_output) < min_power):
-            control_output = min_power * target_angle / abs(target_angle)
-        mm_motor.start_at_power(control_output, -control_output)
+            control_output = int(min_power * target_angle / abs(target_angle))
+        mm_motor.start_tank_at_power(control_output, -control_output)
     mm_motor.stop()
 
 def pid_line_follow(kp,ki,kd,distance):
@@ -160,10 +164,41 @@ slow_speed = 35 #slow speed to control the accuracy
 middle_reflection = 80 # used for the line follower or accurate positioning.
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 hub.motion_sensor.reset_yaw_angle()
-gyro_straight_forward_print(-2,86,normal_speed)
-#left_turn_motor(10,10)
-arm_up(l_arm_motor,-150, 30)
-gyro_straight_forward_print(0,20,fast_speed)
+
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(0,102,normal_speed)
-arm_up(l_arm_motor,150, 60)
+gyro_straight_forward_print(24,110,fast_speed)
+
+pid_turn(80,1,40)
+
+mm_motor = MotorPair("B","A")
+gyro_straight_forward_print(80,30,normal_speed)
+
+i = 0
+while (i < 4):
+    i = i + 1
+    mm_motor = MotorPair("B","A")    
+    gyro_straight_forward_print(85,7,normal_speed)
+
+    mm_motor = MotorPair("A","B")    
+    gyro_straight_forward_print(85,3,normal_speed)
+
+gyro_straight_forward_print(85,4,normal_speed)
+gyro_straight_forward_print(60,40,normal_speed)
+pid_turn(145,1,40)
+gyro_straight_forward_print(145,37,fast_speed)#put units in the circle
+
+mm_motor = MotorPair("B","A")
+gyro_straight_forward_print(145,4,normal_speed)#move back
+
+pid_turn(175,1,40)
+mm_motor.move(48,"cm",0,fast_speed)#lift HI FIVE
+
+hub.motion_sensor.reset_yaw_angle()
+mm_motor = MotorPair("A","B")
+mm_motor.move(4,"cm",0)
+
+right_turn_motor(55,normal_speed)
+gyro_straight_forward_print(55,125,fast_speed)
+gyro_straight_forward_print(30,20,fast_speed)
+
+

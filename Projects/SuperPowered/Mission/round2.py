@@ -176,17 +176,18 @@ while (cnt < 3):
     mm_motor = MotorPair("A","B")
     gyro_straight_forward_print(45,10,normal_speed)
     mm_motor = MotorPair("B","A")
-    gyro_straight_forward_print(45,80,fast_speed)
- 
+    gyro_straight_forward_print(45,80,fast_speed+10)
+
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(46,34,normal_speed)##
+gyro_straight_forward_print(46,34,normal_speed)##34
 mm_motor = MotorPair("B","A")
 #gyro_straight_forward_print(45,2,normal_speed)
-pid_turn(-58,1,40)
-gyro_straight_forward_print(-58,69,normal_speed)
-right_turn_motor(50,50)
+pid_turn(-61,1,40)# -58 to -61
+gyro_straight_forward_print(-61,30,normal_speed)# -61  to -63
+gyro_straight_forward_print(-51,38,normal_speed)# 40->38   -53 ->51
+right_turn_motor(55,50)
 #gyro_straight_forward_print(-110,20,normal_speed)
 r_arm_motor.run_for_degrees(-480,normal_speed)
 mm_motor = MotorPair("A","B")
-gyro_straight_forward_print(-39,150,normal_speed)
+gyro_straight_forward_print(-42,130,fast_speed)
 #r_arm_motor.run_for_degrees(-300,normal_speed)
